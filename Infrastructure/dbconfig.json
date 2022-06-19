@@ -1,0 +1,7 @@
+{
+  "ConnectionStrings": {
+    "GeneralConnection": "Server=localhost;port=3308; Database=puertto.general; user=root;password=Admin123",
+    "SecurityConnection": "Server=localhost;port=3308; Database=puertto.security; user=root;password=Admin123"
+    //"FTLConnection": "Server=tcp:ftl-test-dbs.database.windows.net,1433;Initial Catalog=ftldb;Persist Security Info=False;User ID=ftldbadmin;Password=FTLt35tPa55;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=60;"
+  }
+}

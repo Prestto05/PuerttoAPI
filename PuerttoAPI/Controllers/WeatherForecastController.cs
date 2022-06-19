@@ -1,9 +1,12 @@
+using Core.Puertto;
 using Microsoft.AspNetCore.Mvc;
 
 namespace PuerttoAPI.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Produces("application/json")]
+
+    [Route("puertto/example")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
