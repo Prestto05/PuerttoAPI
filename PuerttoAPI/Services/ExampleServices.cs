@@ -10,12 +10,12 @@ namespace PuerttoAPI.Services
 {
     public class ExampleServices : IExample
     {
-        private readonly IExample _example;
+       
         private readonly Func<GeneralContext> _contextGeneralFactory;
 
-        public ExampleServices(IConfiguration configuration, IExample  example , Func<GeneralContext> contextGeneralFactory)
+        public ExampleServices(IConfiguration configuration, Func<GeneralContext> contextGeneralFactory)
         {
-            _example = example;
+           
             _contextGeneralFactory = contextGeneralFactory;
 
         }

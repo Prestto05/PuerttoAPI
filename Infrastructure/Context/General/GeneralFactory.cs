@@ -1,10 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore.Design;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
-using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Context.General
 {
-    public class CeneralFactory : IDesignTimeDbContextFactory<GeneralContext>
+    public class GeneralFactory : IDesignTimeDbContextFactory<GeneralContext>
     {
         public GeneralContext CreateDbContext(string[] args)
         {

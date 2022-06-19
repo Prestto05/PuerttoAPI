@@ -10,5 +10,9 @@ namespace PuerttoAPI.Extensions
         {
             services.AddScoped<IExample, ExampleServices>();
         }
+
+        public static void InjectRepositoriesDependencies(this IServiceCollection services)
+        {
+        }
     }
 }

@@ -1,11 +1,7 @@
 ﻿using Infrastructure.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Infrastructure.Context.General
 {
@@ -15,7 +11,7 @@ namespace Infrastructure.Context.General
         {
         }
 
-        public DbSet<ExampleEntity> Exemplo { get; set; }
+        public DbSet<ExampleEntity> Ejemplo { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder) 
         {

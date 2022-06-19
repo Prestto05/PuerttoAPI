@@ -87,18 +87,15 @@ namespace PuerttoAPI.Extensions
         public void ConfigureDatabaseServices(IServiceCollection services)
         {
             services.AddDbContextFactory<GeneralContext>(options => options
-                .UseLazyLoadingProxies()
+                .UseLazyLoadingProxies(false)
                 .ConfigureWarnings(warnings => warnings.Ignore(CoreEventId.LazyLoadOnDisposedContextWarning))
                 .UseMySQL(Configuration.GetConnectionString("GeneralConnection"),
-                    opts => opts.CommandTimeout((int)TimeSpan.FromMinutes(15).TotalSeconds)));
-
-            services.AddDbContextFactory<SecurityContext>(options => options
-               .UseLazyLoadingProxies()
-               .ConfigureWarnings(warnings => warnings.Ignore(CoreEventId.LazyLoadOnDisposedContextWarning))
-               .UseMySQL(Configuration.GetConnectionString("SecurityConnection"),
-                   opts => opts.CommandTimeout((int)TimeSpan.FromMinutes(15).TotalSeconds)));
+                    opts => opts.CommandTimeout((int)TimeSpan.FromMinutes(15).TotalSeconds)).EnableSensitiveDataLogging());
         }
 
     }
 
 }
+
+
+//Configuration.GetConnectionString("GeneralConnection")
