@@ -13,8 +13,9 @@ namespace Core.Puertto
 
     public class Example
     {
-        public int Number { get; set; }
+        public int Id { get; set; }
 
+        public int Number { get; set; }
 
         public string Data { get; set; }
     }

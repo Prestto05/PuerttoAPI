@@ -14,7 +14,7 @@ namespace Infrastructure.Context.General
                 .Build();
             var optionsBuilder = new DbContextOptionsBuilder<GeneralContext>();
             var connectionString = configuration.GetConnectionString("GeneralConnection");
-            optionsBuilder.UseMySQL(connectionString);
+            optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString), b => b.MigrationsAssembly(typeof(GeneralContext).Assembly.FullName));
             return new GeneralContext(optionsBuilder.Options);
         }
     }

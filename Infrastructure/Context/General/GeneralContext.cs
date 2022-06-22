@@ -21,13 +21,14 @@ namespace Infrastructure.Context.General
         private void ConfigureExample(EntityTypeBuilder<ExampleEntity> builder)
         {
             builder.ToTable("Ejemplo");
-            builder.HasKey(s => s.Id);
-            builder.Property(s => s.Id);
+            builder.HasKey(s => s.Id);                
+            builder.Property(s => s.Id)
+                .ValueGeneratedOnAdd();
             builder.Property(fc => fc.Number)               
                 .IsRequired();
-            builder.Property(fc => fc.Data)
-               
+            builder.Property(fc => fc.Data)               
                 .IsRequired();
+          
         }
 
 

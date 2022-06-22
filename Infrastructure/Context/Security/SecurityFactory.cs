@@ -19,7 +19,7 @@ namespace Infrastructure.Context.Security
                 .Build();
             var optionsBuilder = new DbContextOptionsBuilder<SecurityContext>();
             var connectionString = configuration.GetConnectionString("SecurityConnection");
-            optionsBuilder.UseMySQL(connectionString);
+            optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString), b => b.MigrationsAssembly(typeof(SecurityContext).Assembly.FullName));
             return new SecurityContext(optionsBuilder.Options);
         }
     }

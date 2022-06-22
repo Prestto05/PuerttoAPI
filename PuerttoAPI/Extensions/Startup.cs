@@ -3,6 +3,7 @@ using Infrastructure.Context.Security;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
 
 namespace PuerttoAPI.Extensions
@@ -11,29 +12,20 @@ namespace PuerttoAPI.Extensions
     {
         public IConfiguration Configuration { get; }
 
-        public Startup(IConfiguration configuration)
+        public IHostBuilder _hostBuilder  { get; set; }
+
+        public Startup(IConfiguration configuration )
         {
             Configuration = configuration;
+       
         }
 
         
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services, IHostBuilder host)
         {
-            //services.AddMvc(options => options.EnableEndpointRouting = true)
-            //    .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
-            //    .AddFluentValidation(o =>
-            //    {
-            //        o.RegisterValidatorsFromAssemblyContaining<InstitutionValidator>();
-            //        o.RegisterValidatorsFromAssemblyContaining<ProductValidator>();
-            //        o.RegisterValidatorsFromAssemblyContaining<OperationsCriteriaValidator>();
-            //        o.RegisterValidatorsFromAssemblyContaining<ExtendedPropertiesValidator>();
-            //        o.RegisterValidatorsFromAssemblyContaining<OperationCriteriaTypeValidator>();
-            //        o.ImplicitlyValidateChildProperties = true;
-            //    });
-
-
+           
             services.AddControllers()
                 .AddNewtonsoftJson(options =>
                     options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver())
@@ -48,16 +40,25 @@ namespace PuerttoAPI.Extensions
             });
 
             services.AddSwagger();
-            
 
-           ConfigureDatabaseServices(services);
+
+
+            //services.BuildServiceProvider().CreateScope().ServiceProvider.GetRequiredService<GeneralContext>();
+
 
             // DI
+            //services.AddHttpContextAccessor();
+            ConfigureDatabaseServices(services);
+
+
             services.AddSingleton<IConfiguration>(Configuration);
-            //services.InjectAutomapperService();
-            //services.InjectRepositoriesDependencies();
-            //services.InjectServiceAdaptersDependencies();
+            services.InjectAutomapperService();
+            services.InjectRepositoriesDependencies();
             services.InjectApiServicesDependencies();
+            
+            //host.Build().SeedData();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,6 +75,7 @@ namespace PuerttoAPI.Extensions
             }
 
             //app.ConfigureCustomLoggingMiddleware();
+
             app.ConfigureCustomExceptionMiddleware();
             app.UseHttpsRedirection();
             app.UseRouting();
@@ -86,16 +88,44 @@ namespace PuerttoAPI.Extensions
 
         public void ConfigureDatabaseServices(IServiceCollection services)
         {
+            var generalConnection = Configuration.GetConnectionString("GeneralConnection");
+            var securityConnection = Configuration.GetConnectionString("SecurityConnection");
+
+
             services.AddDbContextFactory<GeneralContext>(options => options
                 .UseLazyLoadingProxies(false)
                 .ConfigureWarnings(warnings => warnings.Ignore(CoreEventId.LazyLoadOnDisposedContextWarning))
-                .UseMySQL(Configuration.GetConnectionString("GeneralConnection"),
-                    opts => opts.CommandTimeout((int)TimeSpan.FromMinutes(15).TotalSeconds)).EnableSensitiveDataLogging());
+                .UseMySql(generalConnection, ServerVersion.AutoDetect(generalConnection),
+                    opts => opts.CommandTimeout((int)TimeSpan.FromMinutes(15).TotalSeconds)).EnableSensitiveDataLogging(), ServiceLifetime.Transient);
+
+            //  services.AddDbContext<GeneralContext>(options =>
+            //   {
+            //       options.UseMySql(generalConnection, ServerVersion.AutoDetect(generalConnection),
+            //                  mySqlOptionsAction: sqlOptions =>
+            //                  {
+            //                      sqlOptions.EnableRetryOnFailure(
+            //                      maxRetryCount: 8,
+            //                      maxRetryDelay: TimeSpan.FromSeconds(30),
+            //                      errorNumbersToAdd: null);
+            //                  }
+            //              );
+            //       options.EnableSensitiveDataLogging();
+            //       options.EnableServiceProviderCaching(true);
+            //       options.EnableThreadSafetyChecks();
+            //       options.EnableDetailedErrors();
+
+            //   }
+            //  , ServiceLifetime.Transient
+            //);
+
+            services.AddDbContextFactory<GeneralContext>(options => options
+               .UseLazyLoadingProxies(false)
+               .ConfigureWarnings(warnings => warnings.Ignore(CoreEventId.LazyLoadOnDisposedContextWarning))
+               .UseMySql(securityConnection, ServerVersion.AutoDetect(securityConnection),
+                   opts => opts.CommandTimeout((int)TimeSpan.FromMinutes(15).TotalSeconds)).EnableSensitiveDataLogging());
+
         }
 
     }
 
 }
-
-
-//Configuration.GetConnectionString("GeneralConnection")
