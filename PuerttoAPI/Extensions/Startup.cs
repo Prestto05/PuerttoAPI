@@ -96,27 +96,7 @@ namespace PuerttoAPI.Extensions
                 .UseLazyLoadingProxies(false)
                 .ConfigureWarnings(warnings => warnings.Ignore(CoreEventId.LazyLoadOnDisposedContextWarning))
                 .UseMySql(generalConnection, ServerVersion.AutoDetect(generalConnection),
-                    opts => opts.CommandTimeout((int)TimeSpan.FromMinutes(15).TotalSeconds)).EnableSensitiveDataLogging(), ServiceLifetime.Transient);
-
-            //  services.AddDbContext<GeneralContext>(options =>
-            //   {
-            //       options.UseMySql(generalConnection, ServerVersion.AutoDetect(generalConnection),
-            //                  mySqlOptionsAction: sqlOptions =>
-            //                  {
-            //                      sqlOptions.EnableRetryOnFailure(
-            //                      maxRetryCount: 8,
-            //                      maxRetryDelay: TimeSpan.FromSeconds(30),
-            //                      errorNumbersToAdd: null);
-            //                  }
-            //              );
-            //       options.EnableSensitiveDataLogging();
-            //       options.EnableServiceProviderCaching(true);
-            //       options.EnableThreadSafetyChecks();
-            //       options.EnableDetailedErrors();
-
-            //   }
-            //  , ServiceLifetime.Transient
-            //);
+                    opts => opts.CommandTimeout((int)TimeSpan.FromMinutes(15).TotalSeconds)).EnableSensitiveDataLogging());
 
             services.AddDbContextFactory<GeneralContext>(options => options
                .UseLazyLoadingProxies(false)

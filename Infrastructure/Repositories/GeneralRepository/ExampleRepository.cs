@@ -1,4 +1,6 @@
-﻿using Infrastructure.Context.General;
+﻿using AutoMapper;
+using Core.Puertto.Exceptions;
+using Infrastructure.Context.General;
 using Infrastructure.Entities;
 using Infrastructure.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -50,40 +53,37 @@ namespace Infrastructure.Repositories.GeneralRepository
             try
             {
                 var newValue = new List<ExampleEntity>();
-
                 await using (var context = _dbContext)
                 {
-                    var x = new MySqlConnection(context.Database.GetConnectionString());
+                    var connection = new MySqlConnection(context.Database.GetConnectionString());
 
                     MySqlCommand mySqlCommand = new MySqlCommand();
-
-                    mySqlCommand.Connection = x;
+                    mySqlCommand.Connection = connection;
                     mySqlCommand.CommandText = "allread";
                     mySqlCommand.CommandType = CommandType.StoredProcedure;
-
-                    x.Open();
-
+                    connection.Open();
                     MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
+
+                    //var x = Mapper.Map<IDataReader, IEnumerable<ExampleEntity>>(mySqlDataReader);
                     while (mySqlDataReader.Read())
                     {
                         newValue.Add(new ExampleEntity()
                         {
                             Id = (mySqlDataReader.IsDBNull(mySqlDataReader.GetOrdinal("Id")) == false ? mySqlDataReader.GetInt32("Id") : 0),
-                            Data = (mySqlDataReader.IsDBNull(mySqlDataReader.GetOrdinal("Data")) == false ? mySqlDataReader.GetString("Data") : ""),
+                            Data = (mySqlDataReader.IsDBNull(mySqlDataReader.GetOrdinal("Data")) == false ? mySqlDataReader.GetString("Data") : string.Empty),
                             Number = (mySqlDataReader.IsDBNull(mySqlDataReader.GetOrdinal("Number")) == false ? mySqlDataReader.GetInt32("Number") : 0)
                         });
                     }
-
-                    x.Close();
-
+                    connection.Close();
                 }
 
                 return newValue;
             }
             catch (Exception ex)
             {
-
-                throw;
+                var friendlyMessage = "Lamentamos los inconvenientes, por favor intente de nuevo.";
+                var httpStatusCode = (int)HttpStatusCode.InternalServerError;
+                throw new HttpException(ex.Message, friendlyMessage, httpStatusCode, ex.InnerException);
             }
          
         }
@@ -97,5 +97,21 @@ namespace Infrastructure.Repositories.GeneralRepository
         {
             throw new NotImplementedException();
         }
+
+
+        //public void Then_an_automapper_exception_should_be_thrown()
+        //{
+        //    var passed = false;
+        //    try
+        //    {
+        //        Mapper.Map<IDataReader, IEnumerable<DTOObject>>(_dataReader).FirstOrDefault();
+        //    }
+        //    catch (AutoMapperMappingException)
+        //    {
+        //        passed = true;
+        //    }
+
+        //    passed.ShouldBeTrue();
+        //}
     }
 }

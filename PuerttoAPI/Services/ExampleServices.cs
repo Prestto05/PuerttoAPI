@@ -51,7 +51,7 @@ namespace PuerttoAPI.Services
             {
                 
                 var exam = _mapper.Map<ExampleEntity>(example);
-                var x = _exaampleRepository.Insert(exampleEntityi).ConfigureAwait(false);
+                var x = _exaampleRepository.AddAsync(exampleEntityi).ConfigureAwait(false);
                 //var x = (await unitOfWork.Repository<IExaampleRepository, ExampleRepository>()
                 //       .AddAsync(exam)
                 //       .ConfigureAwait(true));
