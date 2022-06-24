@@ -4,7 +4,7 @@
     "SecurityConnection": "Server=puerttomysqdb.mysql.database.azure.com;port=3306; UserID =puerrtoAdmin;Password=Admin2022Prestto; Database=puerttosecurity;",
     "LogisticsConnection": "Server=puerttomysqdb.mysql.database.azure.com;port=3306; UserID =puerrtoAdmin;Password=Admin2022Prestto; Database=puerttologistics;",
     "FinancialConnection": "Server=puerttomysqdb.mysql.database.azure.com;port=3306; UserID =puerrtoAdmin;Password=Admin2022Prestto; Database=puerttofinancial;",
-    "InvantarioConnection": "Server=puerttomysqdb.mysql.database.azure.com;port=3306; UserID =puerrtoAdmin;Password=Admin2022Prestto; Database=puerttoinventario;"
+    "InventarioConnection": "Server=puerttomysqdb.mysql.database.azure.com;port=3306; UserID =puerrtoAdmin;Password=Admin2022Prestto; Database=puerttoinventario;"
 
     //"GeneralConnection": "Server=192.168.20.9;port=3306; Database=puerttogeneral; user=root;password=Admin1234",
     //"SecurityConnection": "Server=192.168.20.9;port=3306; Database=puerttosecurity; user=root;password=Admin1234",

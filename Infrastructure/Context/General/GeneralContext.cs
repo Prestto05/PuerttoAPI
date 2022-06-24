@@ -11,25 +11,17 @@ namespace Infrastructure.Context.General
         {
         }
 
-        public DbSet<ExampleEntity> Ejemplo { get; set; }
+       // public DbSet<ExampleEntity> Ejemplo { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder) 
         {
-            builder.Entity<ExampleEntity>(ConfigureExample);
+            //builder.Entity<ExampleEntity>(ConfigureExample);
         }
 
-        private void ConfigureExample(EntityTypeBuilder<ExampleEntity> builder)
-        {
-            builder.ToTable("Ejemplo");
-            builder.HasKey(s => s.Id);                
-            builder.Property(s => s.Id)
-                .ValueGeneratedOnAdd();
-            builder.Property(fc => fc.Number)               
-                .IsRequired();
-            builder.Property(fc => fc.Data)               
-                .IsRequired();
-          
-        }
+        //private void ConfigureExample(EntityTypeBuilder<ExampleEntity> builder)
+        //{
+                    
+        //}
 
 
     }

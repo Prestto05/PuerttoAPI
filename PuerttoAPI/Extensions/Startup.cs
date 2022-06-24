@@ -1,10 +1,13 @@
 ﻿using Infrastructure.Context.General;
 using Infrastructure.Context.Security;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
+using System.Text;
 
 namespace PuerttoAPI.Extensions
 {
@@ -18,9 +21,7 @@ namespace PuerttoAPI.Extensions
         {
             Configuration = configuration;
        
-        }
-
-        
+        }        
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services, IHostBuilder host)
@@ -41,16 +42,30 @@ namespace PuerttoAPI.Extensions
 
             services.AddSwagger();
 
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer( x => {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = Configuration.GetValue<string>("Jwt:Issuer"),
+                    ValidAudience = Configuration.GetValue<string>("Jwt:Audience"),
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration.GetValue<string>("Jwt:Key")))
+                };
 
-
-            //services.BuildServiceProvider().CreateScope().ServiceProvider.GetRequiredService<GeneralContext>();
-
+            });
 
             // DI
             //services.AddHttpContextAccessor();
             ConfigureDatabaseServices(services);
-
-
             services.AddSingleton<IConfiguration>(Configuration);
             services.InjectAutomapperService();
             services.InjectRepositoriesDependencies();
@@ -80,6 +95,8 @@ namespace PuerttoAPI.Extensions
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseCustomSwagger();
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

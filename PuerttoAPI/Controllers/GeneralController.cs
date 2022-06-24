@@ -1,4 +1,5 @@
 ﻿using Core.Puertto.DTOs.General;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PuerttoAPI.Interfaces;
 
@@ -7,6 +8,7 @@ namespace PuerttoAPI.Controllers
     [ApiController]
     [Produces("application/json")]
     [Route("puertto/general")]
+    [Authorize]
     public class GeneralController : ControllerBase
     {
 

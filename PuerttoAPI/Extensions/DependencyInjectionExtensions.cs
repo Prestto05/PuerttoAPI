@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Infrastructure.Interfaces;
 using Infrastructure.Repositories;
-using Infrastructure.Repositories.GeneralRepository;
+
 using PuerttoAPI.Interfaces;
 using PuerttoAPI.Services;
 using PuerttoAPI.Services.General;

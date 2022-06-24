@@ -16,26 +16,26 @@ namespace Infrastructure.Context.Security
 
         }
 
-        public DbSet<ValueEntity> Valor { get; set; }
+       // public DbSet<ValueEntity> Valor { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<ValueEntity>(ConfigureExample);
+           // builder.Entity<ValueEntity>(ConfigureExample);
         }
 
-        private void ConfigureExample(EntityTypeBuilder<ValueEntity> builder)
-        {
-            builder.ToTable("Valor");
-            builder.HasKey(s => s.Id);
-            builder.Property(s => s.Id);
-            builder.Property(fc => fc.precios)
-                .IsRequired();
-            builder.Property(fc => fc.CreateOn)
-                .HasColumnType("datetime")
-                .IsRequired();
-            builder.Property(fc => fc.IdExample)
-                .IsRequired();
+        //private void ConfigureExample(EntityTypeBuilder<ValueEntity> builder)
+        //{
+        //    builder.ToTable("Valor");
+        //    builder.HasKey(s => s.Id);
+        //    builder.Property(s => s.Id);
+        //    builder.Property(fc => fc.precios)
+        //        .IsRequired();
+        //    builder.Property(fc => fc.CreateOn)
+        //        .HasColumnType("datetime")
+        //        .IsRequired();
+        //    builder.Property(fc => fc.IdExample)
+        //        .IsRequired();
 
-        }
+        //}
     }
 }
