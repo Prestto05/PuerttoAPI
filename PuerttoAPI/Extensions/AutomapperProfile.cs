@@ -8,7 +8,7 @@ namespace PuerttoAPI.Extensions
     {
         public AutomapperProfile()
         {
-            CreateMap<Example, ExampleEntity>().ReverseMap();
+            //CreateMap<Example, ExampleEntity>().ReverseMap();
 
         }
     }
