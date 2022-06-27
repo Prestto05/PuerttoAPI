@@ -8,7 +8,7 @@ namespace PuerttoAPI.Controllers
     [ApiController]
     [Produces("application/json")]
     [Route("puertto/general")]
-    [Authorize]
+    //[Authorize]
     public class GeneralController : ControllerBase
     {
 
