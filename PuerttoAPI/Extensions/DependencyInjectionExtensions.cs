@@ -5,6 +5,7 @@ using Infrastructure.Repositories;
 using PuerttoAPI.Interfaces;
 using PuerttoAPI.Services;
 using PuerttoAPI.Services.General;
+using PuerttoAPI.Services.Security;
 
 namespace PuerttoAPI.Extensions
 {
@@ -20,6 +21,7 @@ namespace PuerttoAPI.Extensions
         public static void InjectApiServicesDependencies(this IServiceCollection services)
         {           
             services.AddScoped<IGeneralServices, GeneralServices>();
+            services.AddScoped<IAuditServices, AuditService>();
         }
 
         public static void InjectRepositoriesDependencies(this IServiceCollection services)

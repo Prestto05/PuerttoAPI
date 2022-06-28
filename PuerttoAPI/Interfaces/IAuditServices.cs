@@ -2,7 +2,7 @@
 
 namespace PuerttoAPI.Interfaces
 {
-    public interface IAudit
+    public interface IAuditServices
     {
 
         Task<Audit> GetFieldsAuditory(HttpContext httpContext);

@@ -105,6 +105,9 @@ namespace PuerttoAPI.Extensions
         {
             var generalConnection = Configuration.GetConnectionString("GeneralConnection");
             var securityConnection = Configuration.GetConnectionString("SecurityConnection");
+            var logisitcsConnection = Configuration.GetConnectionString("LogisticsConnection");
+            var financialConnection = Configuration.GetConnectionString("FinancialConnection");
+            var inventarioConnection = Configuration.GetConnectionString("InventarioConnection");
 
 
             services.AddDbContextFactory<GeneralContext>(options => options
@@ -113,11 +116,29 @@ namespace PuerttoAPI.Extensions
                 .UseMySql(generalConnection, ServerVersion.AutoDetect(generalConnection),
                     opts => opts.CommandTimeout((int)TimeSpan.FromMinutes(15).TotalSeconds)).EnableSensitiveDataLogging());
 
-            services.AddDbContextFactory<GeneralContext>(options => options
+            services.AddDbContextFactory<SecurityContext>(options => options
                .UseLazyLoadingProxies(false)
                .ConfigureWarnings(warnings => warnings.Ignore(CoreEventId.LazyLoadOnDisposedContextWarning))
                .UseMySql(securityConnection, ServerVersion.AutoDetect(securityConnection),
                    opts => opts.CommandTimeout((int)TimeSpan.FromMinutes(15).TotalSeconds)).EnableSensitiveDataLogging());
+
+            services.AddDbContextFactory<SecurityContext>(options => options
+              .UseLazyLoadingProxies(false)
+              .ConfigureWarnings(warnings => warnings.Ignore(CoreEventId.LazyLoadOnDisposedContextWarning))
+              .UseMySql(securityConnection, ServerVersion.AutoDetect(securityConnection),
+                  opts => opts.CommandTimeout((int)TimeSpan.FromMinutes(15).TotalSeconds)).EnableSensitiveDataLogging());
+
+            services.AddDbContextFactory<SecurityContext>(options => options
+              .UseLazyLoadingProxies(false)
+              .ConfigureWarnings(warnings => warnings.Ignore(CoreEventId.LazyLoadOnDisposedContextWarning))
+              .UseMySql(securityConnection, ServerVersion.AutoDetect(securityConnection),
+                  opts => opts.CommandTimeout((int)TimeSpan.FromMinutes(15).TotalSeconds)).EnableSensitiveDataLogging());
+
+            services.AddDbContextFactory<SecurityContext>(options => options
+              .UseLazyLoadingProxies(false)
+              .ConfigureWarnings(warnings => warnings.Ignore(CoreEventId.LazyLoadOnDisposedContextWarning))
+              .UseMySql(securityConnection, ServerVersion.AutoDetect(securityConnection),
+                  opts => opts.CommandTimeout((int)TimeSpan.FromMinutes(15).TotalSeconds)).EnableSensitiveDataLogging());
 
         }
 

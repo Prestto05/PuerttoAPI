@@ -25,6 +25,7 @@ namespace PuerttoAPI.Services.General
                 var listBanner = new List<BannerIndex>();
                 var containerName = (isSingIn)? _configuration.GetValue<string>("AzureStorage:Multimedia:ContainerNameSI") : _configuration.GetValue<string>("AzureStorage:Multimedia:ContainerName");
                 var urisBlob = await GetBlobFiles(containerName);
+                urisBlob = urisBlob.OrderBy(x => x.AbsolutePath).ToList();
                 var count = 0;
                 foreach (var item in urisBlob)
                 {
@@ -35,6 +36,7 @@ namespace PuerttoAPI.Services.General
                     });
                     count++;
                 }
+               
                 return listBanner;
             }
             catch (Exception ex)

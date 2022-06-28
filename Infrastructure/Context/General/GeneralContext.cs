@@ -88,7 +88,7 @@ namespace Infrastructure.Context.General
             builder.Property(g => g.Alias)
                 .IsRequired();
             builder.Property(g => g.State)
-              .HasConversion(g => (byte)g, tp => (State)g)
+              .HasConversion(g => (byte)g, g => (State)g)
               .IsRequired();
         }
 
