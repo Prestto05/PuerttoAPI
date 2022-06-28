@@ -4,32 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Entities.Security
+namespace Core.Puertto.DTOs.Security
 {
     /// <summary>
     /// Campos de auditorias
     /// </summary>
-    public class Audit 
+    public class Audit
     {
-        /// <summary>
+        // <summary>
         /// Identificador de usario que registra una acciòn
         /// </summary>
-        public int IdUserRegisterAudit { get; set; }
-
-        /// <summary>
-        /// Fecha de creaciòn para la auditoria
-        /// </summary>
-        public DateTime CreateOnAudit { get; set; }
-
-        /// <summary>
-        /// Identificador de usario que modfico el registro
-        /// </summary>
-        public int? IdUserModifyAudit { get; set; }
-
-        /// <summary>
-        /// Fecha de modificaciòn del registro 
-        /// </summary>
-        public DateTime? ModifyOnAudit { get; set; }
+        public int IdUserAudit { get; set; }
 
         /// <summary>
         /// Direcciòn de protocolo (IP) del usario 
@@ -55,7 +40,5 @@ namespace Infrastructure.Entities.Security
         /// Comentatitio o algun valor descriptivo
         /// </summary>
         public string? Comment { get; set; }
-
     }
-
 }

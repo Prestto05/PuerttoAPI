@@ -70,7 +70,6 @@ namespace PuerttoAPI.Extensions
             services.InjectAutomapperService();
             services.InjectRepositoriesDependencies();
             services.InjectApiServicesDependencies();
-            
             //host.Build().SeedData();
 
 
@@ -90,7 +89,6 @@ namespace PuerttoAPI.Extensions
             }
 
             //app.ConfigureCustomLoggingMiddleware();
-
             app.ConfigureCustomExceptionMiddleware();
             app.UseHttpsRedirection();
             app.UseRouting();
