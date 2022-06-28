@@ -1,5 +1,6 @@
 ﻿using Core.Puertto.DTOs.Security;
 using PuerttoAPI.Interfaces;
+using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
 
 namespace PuerttoAPI.Services.Security
@@ -11,7 +12,20 @@ namespace PuerttoAPI.Services.Security
             var audit = new Audit();
             //audit.IdUserAudit = int.Parse(httpContext.User.Claims.FirstOrDefault(e => e.Type == "Id").Value);
             audit.IpPublicAudit = (string.IsNullOrEmpty(httpContext.Connection.RemoteIpAddress.ToString())) ? string.Empty: httpContext.Connection.RemoteIpAddress.ToString();
-            audit.MacAddressAudit = GetClientMAC("186.3.178.122");
+
+
+            string addr = "";
+            foreach (NetworkInterface n in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                if (n.OperationalStatus == OperationalStatus.Up)
+                {
+                    addr += n.GetPhysicalAddress().ToString();
+                    break;
+                }
+            }
+            
+
+            audit.MacAddressAudit = addr;
 
 
 
