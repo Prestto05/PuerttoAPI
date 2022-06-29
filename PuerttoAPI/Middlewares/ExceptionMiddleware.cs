@@ -19,6 +19,7 @@ namespace PuerttoAPI.Middlewares
         {
             try
             {
+                
                 await _next(httpContext);
             }
             catch (HttpException httpEx)

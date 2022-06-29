@@ -11,6 +11,7 @@ namespace Core.Puertto.DTOs.Security
     /// </summary>
     public class Audit
     {
+       
         // <summary>
         /// Identificador de usario que registra una acciòn
         /// </summary>

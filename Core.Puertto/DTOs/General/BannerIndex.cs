@@ -12,4 +12,24 @@ namespace Core.Puertto.DTOs.General
 
         public Uri url { get; set; }
     }
+
+    public class BannerCruz
+    {
+        public int id { get; set; }
+
+        public string texto { get; set; }
+
+        public string classTexto { get; set; }
+
+        public Uri imgRuta { get; set; }
+    }
+
+    public class MetadataBlobImg
+    {
+        public Uri Uri{ get; set; }
+
+        public List<Dictionary<string, string>> MetadaProperty { get; set; }
+    }
+
+
 }

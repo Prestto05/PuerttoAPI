@@ -28,6 +28,13 @@ namespace PuerttoAPI.Controllers
         {
             return await _generalServices.GetBannerByIndex(isSingIn).ConfigureAwait(true);
         }
+
+        
+        [HttpGet("bannercruzindex")]
+        public async Task<List<BannerCruz>> RetrieveBannerCruzIndexAsyn()
+        {
+            return await _generalServices.GetBannerCruzIndex().ConfigureAwait(true);
+        }
     }
 
 }

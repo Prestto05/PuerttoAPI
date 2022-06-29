@@ -48,6 +48,31 @@ namespace PuerttoAPI.Services.General
            
         }
 
+        public async Task<List<BannerCruz>> GetBannerCruzIndex()
+        {
+            try
+            {
+                var listBanner = new List<BannerCruz>();
+                var containerName = _configuration.GetValue<string>("AzureStorage:Multimedia:ContainerNameC");
+                var urisBlob = await GetBlobFilesMetadata(containerName);
+
+                foreach (var item in urisBlob)
+                {
+                    listBanner.Add(new BannerCruz()
+                    {
+                        
+                    });
+                }
+
+                return listBanner;
+            }
+            catch (Exception ex)
+            {
+                var friendlyMessage = "Lamentamos los inconvenientes, por favor intente de nuevo.";
+                var httpStatusCode = (int)HttpStatusCode.InternalServerError;
+                throw new HttpException(ex.Message, friendlyMessage, httpStatusCode, ex.InnerException);
+            }
+        }
 
         private async Task<List<Uri>> GetBlobFiles(string containerName)
         {
@@ -66,6 +91,48 @@ namespace PuerttoAPI.Services.General
 
             while (blobContinuationToken != null); // Loop while the continuation token is not null.
             return uris;
+        }
+
+
+        private async Task<List<MetadataBlobImg>> GetBlobFilesMetadata(string containerName)
+        {
+            var Metadatas = new List<MetadataBlobImg>();
+            var container = GetCloudBlobClient().GetContainerReference(containerName);
+            if (!await container.ExistsAsync()) await container.CreateAsync();
+            BlobContinuationToken blobContinuationToken = null;
+            do
+            {
+                var resultSegment = await container.ListBlobsSegmentedAsync(null, blobContinuationToken);
+
+                // Get the value of the continuation token returned by the listing call.
+                blobContinuationToken = resultSegment.ContinuationToken;
+
+                foreach (IListBlobItem item in resultSegment.Results) {
+                    var metadata = new MetadataBlobImg();
+                    metadata.MetadaProperty = new List<Dictionary<string, string>>();
+
+                    if (item is CloudBlockBlob blob)
+                    {
+                        //the new package supports syncronous method
+                        await blob.FetchAttributesAsync();
+                       
+                        foreach (var metadataItem in blob.Metadata)
+                        {
+                            var dicMeta = new Dictionary<string, string>();
+                            dicMeta.Add(metadataItem.Key, metadataItem.Value);
+                            metadata.MetadaProperty.Add(dicMeta);
+                           
+                        }
+                    }     
+                    metadata.Uri = item.Uri;
+                    Metadatas.Add(metadata);
+
+                }
+
+            }
+
+            while (blobContinuationToken != null); // Loop while the continuation token is not null.
+            return Metadatas;
         }
 
 
