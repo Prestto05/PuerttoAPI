@@ -52,16 +52,23 @@ namespace PuerttoAPI.Services.General
         {
             try
             {
+                var styleBanner = "card-title d-xl-block d-md-block d-xxl-block";
+                Random rand = new Random();
                 var listBanner = new List<BannerCruz>();
                 var containerName = _configuration.GetValue<string>("AzureStorage:Multimedia:ContainerNameC");
                 var urisBlob = await GetBlobFilesMetadata(containerName);
-
-                foreach (var item in urisBlob)
+                urisBlob = urisBlob.OrderBy(x => rand.Next()).Take(4).ToList();
+                for (int i = 1; i <= urisBlob.Count; i++)
                 {
-                    listBanner.Add(new BannerCruz()
-                    {
-                        
-                    });
+                    var banner = new BannerCruz();
+                    banner.id = i;
+                    banner.imgRuta = urisBlob[i - 1].Uri;
+                    banner.texto = urisBlob[i - 1].Title;
+                    if ((i % 2) == 0)
+                        banner.classTexto = $"{styleBanner} {urisBlob[i-1].Color}"; 
+                    else banner.classTexto = $"{styleBanner} {urisBlob[i - 1].Color} text-end";
+
+                    listBanner.Add(banner);
                 }
 
                 return listBanner;
@@ -103,13 +110,12 @@ namespace PuerttoAPI.Services.General
             do
             {
                 var resultSegment = await container.ListBlobsSegmentedAsync(null, blobContinuationToken);
-
                 // Get the value of the continuation token returned by the listing call.
                 blobContinuationToken = resultSegment.ContinuationToken;
 
                 foreach (IListBlobItem item in resultSegment.Results) {
                     var metadata = new MetadataBlobImg();
-                    metadata.MetadaProperty = new List<Dictionary<string, string>>();
+                    
 
                     if (item is CloudBlockBlob blob)
                     {
@@ -118,10 +124,16 @@ namespace PuerttoAPI.Services.General
                        
                         foreach (var metadataItem in blob.Metadata)
                         {
-                            var dicMeta = new Dictionary<string, string>();
-                            dicMeta.Add(metadataItem.Key, metadataItem.Value);
-                            metadata.MetadaProperty.Add(dicMeta);
-                           
+                            switch(metadataItem.Key)
+                            {
+                                case "title":
+                                    metadata.Title = Uri.UnescapeDataString(metadataItem.Value);
+                                    break;
+
+                                case "color":
+                                    metadata.Color = metadataItem.Value;
+                                    break;
+                            }
                         }
                     }     
                     metadata.Uri = item.Uri;

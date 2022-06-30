@@ -28,7 +28,9 @@ namespace Core.Puertto.DTOs.General
     {
         public Uri Uri{ get; set; }
 
-        public List<Dictionary<string, string>> MetadaProperty { get; set; }
+        public string Title { get; set; }
+
+        public string Color { get; set; }
     }
 
 
