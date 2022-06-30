@@ -20,7 +20,7 @@ namespace Infrastructure.Context.General
         public DbSet<CountryEntity> Countries { get; set; }
         public DbSet<CityEntity>  Cities{ get; set; }
         public DbSet<TypeSubscription>  Subscription{ get; set; }
-        public DbSet<PersonEntity>  Person{ get; set; }
+        //public DbSet<PersonEntity>  Person{ get; set; }
 
         #endregion
 
@@ -32,7 +32,7 @@ namespace Infrastructure.Context.General
             builder.Entity<TypeIdentification>(ConfigureTypeIdentification);
             builder.Entity<Gender>(ConfigureGender);
             builder.Entity<CountryEntity>(ConfigureCountry);
-            builder.Entity<CountryEntity>(ConfigureCountry);
+            builder.Entity<CityEntity>(ConfigureCity);
             builder.Entity<TypeSubscription>(ConfigureTypeSubscription);
             #endregion
 
@@ -134,6 +134,8 @@ namespace Infrastructure.Context.General
               .HasConversion(s => (byte)s, s => (State)s)
               .IsRequired();
         }
+
+
 
         #endregion
 

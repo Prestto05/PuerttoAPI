@@ -31,7 +31,7 @@ namespace PuerttoAPI.Controllers
 
         
         [HttpGet("bannercruzindex")]
-        public async Task<List<BannerIndex>> RetrieveBannerCruzIndexAsyn()
+        public async Task<List<BannerCruz>> RetrieveBannerCruzIndexAsyn()
         {
             return await _generalServices.GetBannerCruzIndex().ConfigureAwait(true);
         }

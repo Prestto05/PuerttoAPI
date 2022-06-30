@@ -6,7 +6,7 @@ namespace PuerttoAPI.Interfaces
     {
         Task<List<BannerIndex>> GetBannerByIndex(bool isSingIn);
 
-        Task<List<BannerIndex>> GetBannerCruzIndex();
+        Task<List<BannerCruz>> GetBannerCruzIndex();
 
     }
 }

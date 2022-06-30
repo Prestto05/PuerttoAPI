@@ -48,13 +48,13 @@ namespace PuerttoAPI.Services.General
            
         }
 
-        public async Task<List<BannerIndex>> GetBannerCruzIndex()
+        public async Task<List<BannerCruz>> GetBannerCruzIndex()
         {
             try
             {
                 var styleBanner = "card-title d-xl-block d-md-block d-xxl-block";
                 Random rand = new Random();
-                var listBanner = new List<BannerIndex>();
+                var listBanner = new List<BannerCruz>();
                 var containerName = _configuration.GetValue<string>("AzureStorage:Multimedia:ContainerNameC");
                 var urisBlob = await GetBlobFiles(containerName);
                 urisBlob = urisBlob.OrderBy(x => rand.Next()).Take(4).ToList();
@@ -62,10 +62,10 @@ namespace PuerttoAPI.Services.General
 
                 foreach (var item in urisBlob)
                 {
-                    listBanner.Add(new BannerIndex()
+                    listBanner.Add(new BannerCruz()
                     {
                         id = count,
-                        url = item
+                        imgRuta = item
                     });
                     count++;
                 }

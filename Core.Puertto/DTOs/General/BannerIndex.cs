@@ -17,10 +17,6 @@ namespace Core.Puertto.DTOs.General
     {
         public int id { get; set; }
 
-        public string texto { get; set; }
-
-        public string classTexto { get; set; }
-
         public Uri imgRuta { get; set; }
     }
 
