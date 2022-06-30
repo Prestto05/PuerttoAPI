@@ -17,11 +17,11 @@ namespace PuerttoAPI.Controllers
             _auditServices = auditServices;
         }
 
-        [HttpGet("Auditoria")]
-        public async Task<Audit> RetrieveAuditAsync()
-        {
-            return await _auditServices.GetFieldsAuditory(HttpContext).ConfigureAwait(true);
-        }
+        //[HttpGet("Auditoria")]
+        //public async Task<Audit> RetrieveAuditAsync()
+        //{
+        //    return await _auditServices.GetFieldsAuditory(HttpContext).ConfigureAwait(true);
+        //}
 
     }
 }

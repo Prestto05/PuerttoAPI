@@ -18,6 +18,11 @@ namespace Core.Puertto.DTOs.Security
         public int IdUserAudit { get; set; }
 
         /// <summary>
+        /// Token para validacion de respuesta
+        /// </summary>
+        public string Token { get; set; }
+
+        /// <summary>
         /// Direcciòn de protocolo (IP) del usario 
         /// </summary>
         public string? IpPublicAudit { get; set; }

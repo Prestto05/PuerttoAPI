@@ -8,12 +8,6 @@ namespace PuerttoAPI.Extensions
         public static void ConfigureCustomExceptionMiddleware(this IApplicationBuilder app)
         {
             app.UseMiddleware<ExceptionMiddleware>();
-        }
-
-        //public static IApplicationBuilder UseSecurityHeadersMiddleware(this IApplicationBuilder app, SecurityHeadersBuilder builder)
-        //{
-        //    SecurityHeadersPolicy policy = builder.Build();
-        //    return app.UseMiddleware<SecurityHeadersMiddleware>(policy);
-        //}
+        }     
     }
 }

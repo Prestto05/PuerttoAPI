@@ -1,4 +1,5 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using Core.Puertto.Extensions;
+using Microsoft.OpenApi.Models;
 using System.Reflection;
 
 namespace PuerttoAPI.Extensions
@@ -20,6 +21,8 @@ namespace PuerttoAPI.Extensions
                     Contact = new OpenApiContact() { Name = "Prestto", Email = "sistemas.prestto05@gmail.com" }
                 });
                 options.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
+
+                options.OperationFilter<CustomHeaderSwaggerAttribute>();
 
                 options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {

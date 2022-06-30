@@ -1,4 +1,5 @@
-﻿using Infrastructure.Context.General;
+﻿using Core.Puertto.DTOs.Security;
+using Infrastructure.Context.General;
 using Infrastructure.Context.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
@@ -90,6 +91,7 @@ namespace PuerttoAPI.Extensions
 
             //app.ConfigureCustomLoggingMiddleware();
             app.ConfigureCustomExceptionMiddleware();
+            
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseCustomSwagger();
