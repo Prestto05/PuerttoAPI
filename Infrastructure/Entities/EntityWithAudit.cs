@@ -47,4 +47,10 @@ namespace Infrastructure.Entities
             set => this.Id = (T)Convert.ChangeType(value, typeof(T));
         }
     }
+
+    public enum EstadoEntity
+    {
+        Activo = 0,
+        Inactivo = 1
+    }
 }
