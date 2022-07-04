@@ -8,26 +8,26 @@ namespace Infrastructure.Entities.Security
 {
     public class UserEntity: EntityWithAudit<Guid>
     {
-        public string Email { get; set; }
+        public string Correo { get; set; }
 
-        public string Password { get; set; }
+        public string Contraseña { get; set; }
 
-        public string KeyUnique { get; set; }
+        public string ClaveUnica { get; set; }
 
-        public bool IsRecoverPassword { get; set; }
+        public bool RecuperarContraseña { get; set; }
 
-        public string CodeCoverPassword { get; set; }
+        public string CodigoRecuperacion { get; set; }
 
-        public int IdTypeSubscription { get; set; }
+        public int IdSuscripcion { get; set; }
 
-        public StateUser  StateUser { get; set; }
+        public EstadoUsuario  StateUser { get; set; }
 
-        public int IdTypeUser { get; set; }
+        public int IdTipoUsuario { get; set; }
 
-        public int IdPerson { get; set; }
+        public int IdPersona { get; set; }
     }
 
-    public enum StateUser 
+    public enum EstadoUsuario 
     {
         Active = 0,
         Inactive = 1,

@@ -14,13 +14,12 @@ namespace Infrastructure.Context.General
 
         #region Catalog
 
-        public DbSet<TypePerson>  TypePerson{ get; set; }
-        public DbSet<TypeIdentification> TypeIdentifications{ get; set; }
-        public DbSet<Gender>  Genders{ get; set; }
-        public DbSet<CountryEntity> Countries { get; set; }
-        public DbSet<CityEntity>  Cities{ get; set; }
+        public DbSet<TypePerson>  TipoPersona{ get; set; }
+        public DbSet<TypeIdentification> TipoIdentificacion{ get; set; }
+        public DbSet<Gender>  Genero{ get; set; }
+        public DbSet<CountryEntity> Paises { get; set; }
+        public DbSet<CityEntity>  Ciudades{ get; set; }
         public DbSet<TypeSubscription>  Subscription{ get; set; }
-        //public DbSet<PersonEntity>  Person{ get; set; }
 
         #endregion
 
@@ -140,45 +139,6 @@ namespace Infrastructure.Context.General
         #endregion
 
 
-        private void ConfigurePerson(EntityTypeBuilder<PersonEntity> builder)
-        {
-            builder.ToTable("person");
-            builder.HasKey(p => p.Id);
-            builder.Property(p => p.Id)
-                .ValueGeneratedOnAdd();
-            builder.Property(p => p.NanmeFirst);
-            builder.Property(p => p.NameSecond);
-            builder.Property(p => p.SureName);
-            builder.Property(p => p.LastName);
-            builder.Property(p => p.FullName);
-            builder.Property(p => p.IdGener)
-                .IsRequired();
-            builder.Property(p => p.BirthDate)
-                .HasColumnType("datetime")
-                .IsRequired();
-            builder.Property(p => p.Address);
-            builder.Property(p => p.AddressOptional);
-            builder.Property(p => p.IdTypeIdentification);
-            builder.Property(p => p.Identification);
-            builder.Property(p => p.BusinessName);
-            builder.Property(p => p.Phone);
-            builder.Property(p => p.IdNationality);
-            builder.Property(p => p.ProfilePhoto);
-            builder.Property(p => p.State)
-             .HasConversion(p => (byte)p, p => (StatePerson)p)
-             .IsRequired();
-            builder.Property(p => p.IdUserRegisterAudit);
-            builder.Property(p => p.CreateOnAudit)
-                .HasColumnType("datetime");
-            builder.Property(p => p.IdUserModifyAudit);
-            builder.Property(p => p.ModifyOnAudit)
-                .HasColumnType("datetime");            
-            builder.Property(p => p.IpPublicAudit);
-            builder.Property(p => p.MacAddressAudit);
-            builder.Property(p => p.LatitudeAudit);
-            builder.Property(p => p.LongitudeAudit);
-            builder.Property(p => p.Comment);
-        }
 
 
 
