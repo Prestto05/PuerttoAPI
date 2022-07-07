@@ -41,7 +41,7 @@ namespace Infrastructure.Context.General
 
         private void ConfigureTypePerson(EntityTypeBuilder<TypePerson> builder)
         {
-            builder.ToTable("catalogTypePerson");
+            builder.ToTable("cataltipopersona");
             builder.HasKey(tp => tp.Id);
             builder.Property(tp => tp.Id)
                  .ValueGeneratedOnAdd();
@@ -59,7 +59,7 @@ namespace Infrastructure.Context.General
 
         private void ConfigureTypeIdentification(EntityTypeBuilder<TypeIdentification> builder)
         {
-            builder.ToTable("catalogTypeIdentification");
+            builder.ToTable("cataltipoidentificacion");
             builder.HasKey(ti => ti.Id);
             builder.Property(ti => ti.Id)
                  .ValueGeneratedOnAdd();
@@ -76,7 +76,7 @@ namespace Infrastructure.Context.General
 
         private void ConfigureGender(EntityTypeBuilder<Gender> builder)
         {
-            builder.ToTable("catalogGender");
+            builder.ToTable("catalgenero");
             builder.HasKey(g => g.Id);
             builder.Property(g => g.Id)
                  .ValueGeneratedOnAdd();
@@ -93,7 +93,7 @@ namespace Infrastructure.Context.General
 
         private void ConfigureCountry(EntityTypeBuilder<CountryEntity> builder)
         {
-            builder.ToTable("catalogCountry");
+            builder.ToTable("catalpais");
             builder.HasKey(ct => ct.Id);
             builder.Property(ct => ct.Id)
                  .ValueGeneratedOnAdd();
@@ -107,7 +107,7 @@ namespace Infrastructure.Context.General
 
         private void ConfigureCity(EntityTypeBuilder<CityEntity> builder)
         {
-            builder.ToTable("catalogCity");
+            builder.ToTable("catalciudad");
             builder.HasKey(g => g.Id);
             builder.Property(g => g.Id)
                  .ValueGeneratedOnAdd();
@@ -119,7 +119,7 @@ namespace Infrastructure.Context.General
 
         private void ConfigureTypeSubscription(EntityTypeBuilder<TypeSubscription> builder)
         {
-            builder.ToTable("catalosSubscription");
+            builder.ToTable("catalsuscripcion");
             builder.HasKey(s=> s.Id);
             builder.Property(s=> s.Id)
                  .ValueGeneratedOnAdd();

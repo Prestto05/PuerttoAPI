@@ -14,7 +14,7 @@ namespace Infrastructure.Entities.Security
         /// <summary>
         /// Identificador de usario que registra una acciòn
         /// </summary>
-        public int IdUserRegisterAudit { get; set; }
+        public int? IdUserRegisterAudit { get; set; }
 
         /// <summary>
         /// Fecha de creaciòn para la auditoria

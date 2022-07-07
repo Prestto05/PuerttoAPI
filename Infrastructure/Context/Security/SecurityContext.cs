@@ -28,7 +28,7 @@ namespace Infrastructure.Context.Security
 
         private void ConfigurePerson(EntityTypeBuilder<PersonEntity> builder)
         {
-            builder.ToTable("person");
+            builder.ToTable("persona");
             builder.HasKey(p => p.Id);
             builder.Property(p => p.Id)
                 .ValueGeneratedOnAdd();
@@ -65,7 +65,7 @@ namespace Infrastructure.Context.Security
 
         private void ConfigureUser(EntityTypeBuilder<UserEntity> builder)
         {
-            builder.ToTable("user");
+            builder.ToTable("usuario");
             builder.HasKey(us => us.Id);
             builder.Property(us => us.Id)
                 .ValueGeneratedOnAdd();
@@ -75,7 +75,7 @@ namespace Infrastructure.Context.Security
                 .IsRequired();
             builder.Property(us => us.ClaveUnica)
                 .IsRequired();
-            builder.Property(us => us.RecuperarContraseña);
+            builder.Property(us => us.RecuperarContraseña)                
             builder.Property(us => us.CodigoRecuperacion);
             builder.Property(us => us.IdTipoUsuario)
                 .IsRequired();

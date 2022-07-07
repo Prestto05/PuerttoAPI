@@ -22,6 +22,7 @@ namespace PuerttoAPI.Extensions
         {           
             services.AddScoped<IGeneralServices, GeneralServices>();
             services.AddScoped<IAuditServices, AuditService>();
+            services.AddScoped<IUsuarioServices, UsuarioServices>();
         }
 
         public static void InjectRepositoriesDependencies(this IServiceCollection services)

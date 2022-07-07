@@ -14,11 +14,11 @@ namespace Infrastructure.Entities.Security
 
         public string ClaveUnica { get; set; }
 
-        public bool RecuperarContraseña { get; set; }
+        public bool? RecuperarContraseña { get; set; }
 
-        public string CodigoRecuperacion { get; set; }
+        public string? CodigoRecuperacion { get; set; }
 
-        public int IdSuscripcion { get; set; }
+        public int? IdSuscripcion { get; set; }
 
         public EstadoUsuario  StateUser { get; set; }
 

@@ -10,9 +10,9 @@ namespace Infrastructure.Entities.General
     {
         public string Code { get; set; }
 
-        public string CodeIso { get; set; }
+        public string? CodeIso { get; set; }
 
-        public int CodePhone { get; set; }
+        public int? CodePhone { get; set; }
 
         public string CountryName { get; set; }
     }

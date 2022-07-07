@@ -10,8 +10,6 @@ namespace PuerttoAPI.Services.Security
             var audit = new Audit();
             if(httpContext.Request.Headers.TryGetValue("iduser" ,out var outIduser)) audit.IdUserAudit = int.Parse(outIduser);
             else { audit.IdUserAudit = 0; }
-            if (httpContext.Request.Headers.TryGetValue("token", out var outtoken))  audit.Token = outtoken;
-            else { audit.Token = string.Empty; }
             audit.IpPublicAudit = (string.IsNullOrEmpty(httpContext.Connection.RemoteIpAddress.ToString())) ? string.Empty: httpContext.Connection.RemoteIpAddress.ToString();
             if (httpContext.Request.Headers.TryGetValue("macaddress", out var outmacadd)) audit.MacAddressAudit = outmacadd;
             else { audit.MacAddressAudit = string.Empty; }

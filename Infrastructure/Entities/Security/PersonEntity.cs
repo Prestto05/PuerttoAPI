@@ -13,9 +13,9 @@ namespace Infrastructure.Entities.Security
 
         public string? ApellidosCompletos { get; set; }
 
-        public int IdGenero { get; set; }
+        public int? IdGenero { get; set; }
 
-        public DateTime FechaNacimiento { get; set; }
+        public DateTime? FechaNacimiento { get; set; }
 
         public string? Direccion { get; set; }
 
@@ -39,7 +39,8 @@ namespace Infrastructure.Entities.Security
 
     public enum EstadoPersona
     {
-        Active = 0,
-        Inactive = 1,
+        creado = 0,
+        Active = 1,
+        Inactive = 2,
     }
 }
