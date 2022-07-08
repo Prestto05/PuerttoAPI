@@ -19,4 +19,11 @@ namespace Core.Puertto.DTOs.Security
 
         public DateTime Expiracion { get; set; }
     }
+
+    public class RespuestaCrearComprad
+    {
+        public string Id { get; set; }
+
+        public string Correo { get; set; }
+    }
 }

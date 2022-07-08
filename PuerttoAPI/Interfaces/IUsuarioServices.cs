@@ -4,6 +4,6 @@ namespace PuerttoAPI.Interfaces
 {
     public interface IUsuarioServices
     {
-        Task<ReponseRegisterComp> RegistrarCompradorAsync(RequestRegisterComp requestRegisterComp, Audit audit);
+        Task<RespuestaCrearComprad> RegistrarCompradorAsync(RequestRegisterComp requestRegisterComp, Audit audit);
     }
 }

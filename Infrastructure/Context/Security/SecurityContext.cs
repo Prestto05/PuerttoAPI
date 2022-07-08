@@ -51,7 +51,8 @@ namespace Infrastructure.Context.Security
              .IsRequired();
             builder.Property(p => p.IdUserRegisterAudit);
             builder.Property(p => p.CreateOnAudit)
-                .HasColumnType("datetime");
+                .HasColumnType("datetime")
+                .IsRequired();
             builder.Property(p => p.IdUserModifyAudit);
             builder.Property(p => p.ModifyOnAudit)
                 .HasColumnType("datetime");
@@ -75,7 +76,7 @@ namespace Infrastructure.Context.Security
                 .IsRequired();
             builder.Property(us => us.ClaveUnica)
                 .IsRequired();
-            builder.Property(us => us.RecuperarContraseña)                
+            builder.Property(us => us.RecuperarContraseña);                
             builder.Property(us => us.CodigoRecuperacion);
             builder.Property(us => us.IdTipoUsuario)
                 .IsRequired();
@@ -85,7 +86,8 @@ namespace Infrastructure.Context.Security
              .IsRequired();
             builder.Property(us => us.IdUserRegisterAudit);
             builder.Property(us => us.CreateOnAudit)
-                .HasColumnType("datetime");
+                .HasColumnType("datetime")
+                .IsRequired();
             builder.Property(us => us.IdUserModifyAudit);
             builder.Property(us => us.ModifyOnAudit)
                 .HasColumnType("datetime");

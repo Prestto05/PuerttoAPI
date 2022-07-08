@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using Infrastructure.Interfaces;
+using Infrastructure.Interfaces.Security;
 using Infrastructure.Repositories;
-
+using Infrastructure.Repositories.SecurityRepository;
 using PuerttoAPI.Interfaces;
 using PuerttoAPI.Services;
 using PuerttoAPI.Services.General;
@@ -27,7 +28,7 @@ namespace PuerttoAPI.Extensions
 
         public static void InjectRepositoriesDependencies(this IServiceCollection services)
         {
-           // services.AddTransient<IExaampleRepository, ExampleRepository>();
+            services.AddTransient<IPersonaRepository, PersonaRepository>();
         }
     }
 }

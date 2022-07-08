@@ -1,5 +1,7 @@
-﻿using Core.Puertto.DTOs.Security;
+﻿using AutoMapper;
+using Core.Puertto.DTOs.Security;
 using Core.Puertto.Exceptions;
+using Infrastructure.Interfaces.Security;
 using PuerttoAPI.Interfaces;
 using System.Net;
 
@@ -8,17 +10,23 @@ namespace PuerttoAPI.Services.Security
     public class UsuarioServices : IUsuarioServices
     {
         private readonly IAuditServices _auditServices;
+        private readonly IPersonaRepository  _personaRepository;
+        private readonly IMapper _mapper;
 
-        public UsuarioServices(IAuditServices auditServices )
+        public UsuarioServices(IAuditServices auditServices, IPersonaRepository personaRepository, IMapper mapper )
         { 
             _auditServices = auditServices;
+            _personaRepository = personaRepository;
+            _mapper = mapper;
         }
 
-        public async Task<ReponseRegisterComp> RegistrarCompradorAsync(RequestRegisterComp requestRegisterComp, Audit audit)
+        public async Task<RespuestaCrearComprad> RegistrarCompradorAsync(RequestRegisterComp requestRegisterComp, Audit audit)
         {
             try
             {
-                return null;
+                var auditEntity = _mapper.Map<Infrastructure.Entities.Security.Audit>(audit);
+                var response = await _personaRepository.CreateUsuarioComprador(requestRegisterComp.Email, requestRegisterComp.Password, "asdsdad", auditEntity);
+                return response;
             }
             catch (Exception ex)
             {

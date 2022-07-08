@@ -16,7 +16,7 @@ namespace PuerttoAPI.Controllers
         }
 
         [HttpPost("registrocomprador")]
-        public async Task<ReponseRegisterComp> RegistroComparador(RequestRegisterComp requestRegister)
+        public async Task<RespuestaCrearComprad> RegistroComparador([FromBody]  RequestRegisterComp requestRegister)
         {
             var audit = await _auditServices.GetFieldsAuditory(HttpContext).ConfigureAwait(true);
             var result = await _usuarioServices.RegistrarCompradorAsync(requestRegister, audit).ConfigureAwait(true);
