@@ -36,7 +36,7 @@ namespace PuerttoAPI.Services.General
                 }
                
                 urisBlob = urisBlob.OrderBy(x => x.AbsolutePath).ToList();
-
+                
                 var count = 0;
                 foreach (var item in urisBlob)
                 {
@@ -44,7 +44,7 @@ namespace PuerttoAPI.Services.General
                     {
                         id = count,
                         url = item,
-                        link = "/usuarios/adn-registrar"
+                        link =(isSingIn)? string.Empty : "/usuarios/adn-registrar"
                     });
                     count++;
                 }
