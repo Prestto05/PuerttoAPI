@@ -43,7 +43,8 @@ namespace PuerttoAPI.Services.General
                     listBanner.Add(new BannerIndex()
                     {
                         id = count,
-                        url = item
+                        url = item,
+                        link = "/usuarios/adn-registrar"
                     });
                     count++;
                 }
