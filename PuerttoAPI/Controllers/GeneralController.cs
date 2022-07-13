@@ -24,9 +24,9 @@ namespace PuerttoAPI.Controllers
         /// <param name="isSingIn"></param>
         /// <returns></returns>
         [HttpGet("bannerindex")]
-        public async Task<List<BannerIndex>> RetrieveBannerIndexAsyn(bool isSingIn)
+        public async Task<List<BannerIndex>> RetrieveBannerIndexAsyn( bool isSingIn, bool isMovil)
         {
-            return await _generalServices.GetBannerByIndex(isSingIn).ConfigureAwait(true);
+            return await _generalServices.GetBannerByIndex(isSingIn, isMovil).ConfigureAwait(true);
         }
 
         

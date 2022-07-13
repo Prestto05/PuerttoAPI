@@ -4,7 +4,7 @@ namespace PuerttoAPI.Interfaces
 {
     public interface IGeneralServices
     {
-        Task<List<BannerIndex>> GetBannerByIndex(bool isSingIn);
+        Task<List<BannerIndex>> GetBannerByIndex(bool isSingIn, bool isMovil);
 
         Task<List<BannerCruz>> GetBannerCruzIndex();
 

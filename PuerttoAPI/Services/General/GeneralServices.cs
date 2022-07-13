@@ -18,14 +18,25 @@ namespace PuerttoAPI.Services.General
             
         }
 
-        public async Task<List<BannerIndex>> GetBannerByIndex(bool isSingIn)
+        public async Task<List<BannerIndex>> GetBannerByIndex(bool isSingIn, bool isMovil)
         {
             try
             {
                 var listBanner = new List<BannerIndex>();
-                var containerName = (isSingIn)? _configuration.GetValue<string>("AzureStorage:Multimedia:ContainerNameSI") : _configuration.GetValue<string>("AzureStorage:Multimedia:ContainerName");
-                var urisBlob = await GetBlobFiles(containerName);
+                var urisBlob = new List<Uri>();
+                if (isMovil)
+                {
+                    var containerName = (isSingIn) ? _configuration.GetValue<string>("AzureStorage:Multimedia:ContainerNameMI") : _configuration.GetValue<string>("AzureStorage:Multimedia:ContainerNameMSI");
+                    urisBlob = await GetBlobFiles(containerName);
+                }
+                else
+                {
+                    var containerName = (isSingIn) ? _configuration.GetValue<string>("AzureStorage:Multimedia:ContainerNameSI") : _configuration.GetValue<string>("AzureStorage:Multimedia:ContainerName");
+                    urisBlob = await GetBlobFiles(containerName);
+                }
+               
                 urisBlob = urisBlob.OrderBy(x => x.AbsolutePath).ToList();
+
                 var count = 0;
                 foreach (var item in urisBlob)
                 {

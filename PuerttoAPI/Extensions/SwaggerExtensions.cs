@@ -22,7 +22,7 @@ namespace PuerttoAPI.Extensions
                 });
                 options.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
 
-                options.OperationFilter<CustomHeaderSwaggerAttribute>();
+               //options.OperationFilter<CustomHeaderSwaggerAttribute>();
 
                 options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {

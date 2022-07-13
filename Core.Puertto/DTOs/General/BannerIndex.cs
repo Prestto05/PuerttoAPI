@@ -11,6 +11,8 @@ namespace Core.Puertto.DTOs.General
         public int id { get; set; }
 
         public Uri url { get; set; }
+
+        public string  link { get; set; }
     }
 
     public class BannerCruz
