@@ -4,12 +4,18 @@
     //"SecurityConnection": "Server=puerttomysqdb.mysql.database.azure.com;port=3306; UserID =puerrtoAdmin;Password=Admin2022Prestto; Database=puerttosecurity;",
     //"LogisticsConnection": "Server=puerttomysqdb.mysql.database.azure.com;port=3306; UserID =puerrtoAdmin;Password=Admin2022Prestto; Database=puerttologistics;",
     //"FinancialConnection": "Server=puerttomysqdb.mysql.database.azure.com;port=3306; UserID =puerrtoAdmin;Password=Admin2022Prestto; Database=puerttofinancial;",
-    //"InventarioConnection": "Server=puerttomysqdb.mysql.database.azure.com;port=3306; UserID =puerrtoAdmin;Password=Admin2022Prestto; Database=puerttoinventario;"
+    ////"InventarioConnection": "Server=puerttomysqdb.mysql.database.azure.com;port=3306; UserID =puerrtoAdmin;Password=Admin2022Prestto; Database=puerttoinventario;"
+    //"Calidad": "Server=puerttomysqdb.mysql.database.azure.com;port=3306; user=puerrtoAdmin;password=Admin2022Prestto; Database=puertto.produccion;",
+    //"Comercial": "Server=puerttomysqdb.mysql.database.azure.com;port=3306; user=puerrtoAdmin;password=Admin2022Prestto; Database=puertto.Comercial;",
+    //"Financiero": "Server=puerttomysqdb.mysql.database.azure.com;port=3306; user=puerrtoAdmin;password=Admin2022Prestto; Database=puertto.Financiero",
 
-    "GeneralConnection": "Server=localhost;port=3306; Database=puerttogeneral; user=root;password=Admin1234",
-    "SecurityConnection": "Server=localhost;port=3306; Database=puerttosecurity; user=root;password=Admin1234",
-    "LogisticsConnection": "Server=localhost;port=3306; Database=puerttologisitcs; user=root;password=Admin1234",
-    "FinancialConnection": "Server=localhost;port=3306; Database=puerttofinanciero; user=root;password=Admin1234",
-    "InventarioConnection": "Server=localhost;port=3306; Database=puerttoinventario; user=root;password=Admin1234",
+    "GeneralConnection": "Server=192.168.20.9;port=3308; Database=puerttogeneral; user=jhonn.montenegro;password=@ocw&*ZCvlpC",
+    "SecurityConnection": "Server=192.168.20.9;port=3308; Database=puerttosecurity; user=jhonn.montenegro;password=@ocw&*ZCvlpC",
+    "LogisticsConnection": "Server=192.168.20.9;port=3308; Database=puerttologisitcs; user=jhonn.montenegro;password=@ocw&*ZCvlpC",
+    "FinancialConnection": "Server=192.168.20.9;port=3308; Database=puerttofinanciero; user=jhonn.montenegro;password=@ocw&*ZCvlpC",
+    "InventarioConnection": "Server=192.168.20.9;port=3308; Database=puerttoinventario; user=jhonn.montenegro;password=@ocw&*ZCvlpC",
+    "Calidad": "Server=192.168.20.9;port=3308; Database=puertto.produccion; user=jhonn.montenegro;password=@ocw&*ZCvlpC",
+    "Comercial": "Server=192.168.20.9;port=3308; Database=puertto.Comercial; user=jhonn.montenegro;password=@ocw&*ZCvlpC",
+    "Financiero": "Server=192.168.20.9;port=3308; Database=puertto.Financiero; user=jhonn.montenegro;password=@ocw&*ZCvlpC"
   }
 }
