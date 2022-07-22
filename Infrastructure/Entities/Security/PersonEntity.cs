@@ -23,17 +23,21 @@ namespace Infrastructure.Entities.Security
 
         public int? IdTipoIdentificacion { get; set; }
 
-        public string? Cedula { get; set; }
+        public string? Identificacion { get; set; }
 
         public string? RazonSocial { get; set; }
 
-        public int? Telefono { get; set; }
+        public string? CodigoTelefono { get; set; }
 
-        public int? IdNacionalidad { get; set; }
+        public string? Telefono { get; set; }
+
+        public int? IdPais { get; set; }
 
         public string? FotoPerfil { get; set; }
 
         public EstadoPersona Estado { get; set; }
+
+        public string? DescripcionPersona { get; set; }
 
     }
 

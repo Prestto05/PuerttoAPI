@@ -19,11 +19,17 @@ namespace Infrastructure.Context.Security
 
         public DbSet<UserEntity> User { get; set; }
         public DbSet<PersonEntity> Persona { get; set; }
+        public DbSet<AdnTiendaEntity> TiendaAdn { get; set; }
+        public DbSet<AdnPagoEntity> PagoAdn { get; set; }
+        public DbSet<AdnTiendaCategoriaEntity> TiendaCategoria { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
              builder.Entity<PersonEntity>(ConfigurePerson);
              builder.Entity<UserEntity>(ConfigureUser);
+             builder.Entity<AdnTiendaEntity>(ConfigureTiendaAnd);
+             builder.Entity<AdnPagoEntity>(ConfigurePagoAdn);
+             builder.Entity<AdnTiendaCategoriaEntity>(ConfigureTiendaCategoria);
         }
 
         private void ConfigurePerson(EntityTypeBuilder<PersonEntity> builder)
@@ -41,11 +47,12 @@ namespace Infrastructure.Context.Security
             builder.Property(p => p.Direccion);
             builder.Property(p => p.DireccionSecundario);
             builder.Property(p => p.IdTipoIdentificacion);
-            builder.Property(p => p.Cedula);
+            builder.Property(p => p.Identificacion);
             builder.Property(p => p.RazonSocial);
             builder.Property(p => p.Telefono);
-            builder.Property(p => p.IdNacionalidad);
+            builder.Property(p => p.IdPais);
             builder.Property(p => p.FotoPerfil);
+            builder.Property(p => p.DescripcionPersona);
             builder.Property(p => p.Estado)
              .HasConversion(p => (byte)p, p => (EstadoPersona)p)
              .IsRequired();
@@ -62,7 +69,6 @@ namespace Infrastructure.Context.Security
             builder.Property(p => p.LongitudeAudit);
             builder.Property(p => p.Comment);
         }
-
 
         private void ConfigureUser(EntityTypeBuilder<UserEntity> builder)
         {
@@ -98,5 +104,85 @@ namespace Infrastructure.Context.Security
             builder.Property(us => us.Comment);
 
         }
+
+        private void ConfigureTiendaAnd(EntityTypeBuilder<AdnTiendaEntity> builder)
+        {
+            builder.ToTable("adntienda");
+            builder.HasKey(at => at.Id);
+            builder.Property(at => at.Id)
+                .ValueGeneratedOnAdd();
+            builder.Property(at => at.Tienda)
+                .IsRequired();
+            builder.Property(at => at.DescripcionTienda)
+                .IsRequired();
+            builder.Property(at => at.Pais)
+                .IsRequired();
+            builder.Property(at => at.Ciudad)
+                .IsRequired();
+            builder.Property(at => at.Direccion)
+                .IsRequired();
+            builder.Property(at => at.InicioActividades)
+                .HasColumnType("datetime")
+                .IsRequired();
+            builder.Property(at => at.FotoTienda);
+            builder.Property(at => at.IdPersona)
+                .IsRequired();
+            builder.Property(at => at.Estado)
+             .HasConversion(at => (byte)at, at => (EstadoTienda)at)
+             .IsRequired();
+            builder.Property(at => at.IpPublicAudit);
+            builder.Property(at => at.MacAddressAudit);
+            builder.Property(at => at.LatitudeAudit);
+            builder.Property(at => at.LongitudeAudit);
+            builder.Property(at => at.Comment);
+        }
+
+        private void ConfigurePagoAdn(EntityTypeBuilder<AdnPagoEntity> builder)
+        {
+            builder.ToTable("adnpago");
+            builder.HasKey(ap => ap.Id);
+            builder.Property(ap => ap.Id)
+                .ValueGeneratedOnAdd();
+            builder.Property(ap => ap.Titular)
+                .IsRequired();
+            builder.Property(ap => ap.Identificacion)
+                .IsRequired();
+            builder.Property(ap => ap.Correo)
+                .IsRequired();
+            builder.Property(ap => ap.IdBanco)
+                .IsRequired();
+            builder.Property(ap => ap.TipoCuenta)
+                .IsRequired();
+            builder.Property(ap => ap.Cuenta)
+                .IsRequired();
+            builder.Property(ap => ap.IdPersona)
+                .IsRequired();
+            builder.Property(ap => ap.CodigoTelefono)
+                .IsRequired();
+            builder.Property(ap => ap.Telefono)
+                .IsRequired();
+            builder.Property(ap => ap.Estado)
+                .HasConversion(ap => (byte)ap, ap => (EstadoPagoAdn)ap)
+                .IsRequired();
+            builder.Property(ap => ap.IpPublicAudit);
+            builder.Property(ap => ap.MacAddressAudit);
+            builder.Property(ap => ap.LatitudeAudit);
+            builder.Property(ap => ap.LongitudeAudit);
+            builder.Property(ap => ap.Comment);
+        }
+
+        private void ConfigureTiendaCategoria(EntityTypeBuilder<AdnTiendaCategoriaEntity> builder)
+        {
+            builder.ToTable("tiendacategoria");
+            builder.HasKey(tc => tc.Id);
+            builder.Property(tc => tc.Id)
+                .ValueGeneratedOnAdd();
+            builder.Property(tc => tc.IdCategoria)
+                .IsRequired();
+            builder.Property(tc => tc.IdAdnTienda)
+                .IsRequired();
+        }
+
+
     }
 }

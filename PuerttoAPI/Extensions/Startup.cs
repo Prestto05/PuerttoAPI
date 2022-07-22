@@ -42,27 +42,8 @@ namespace PuerttoAPI.Extensions
             });
 
             services.AddSwagger();
+            services.AddJWTTokenServices(Configuration);
 
-            services.AddAuthentication(x =>
-            {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer( x => {
-                x.RequireHttpsMetadata = false;
-                x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                    ValidIssuer = Configuration.GetValue<string>("Jwt:Issuer"),
-                    ValidAudience = Configuration.GetValue<string>("Jwt:Audience"),
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration.GetValue<string>("Jwt:Key")))
-                };
-
-            });
 
             // DI
             //services.AddHttpContextAccessor();

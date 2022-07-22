@@ -12,5 +12,6 @@ namespace Infrastructure.Interfaces.Security
     public interface IPersonaRepository : IAsyncRepositoryAlt<PersonEntity, Guid>
     {
         Task<RespuestaCrearComprad> CreateUsuarioComprador(string correo, string contraseña, string keyunique, Audit audit );
+
     }
 }

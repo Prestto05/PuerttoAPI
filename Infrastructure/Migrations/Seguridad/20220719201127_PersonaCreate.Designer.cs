@@ -3,6 +3,7 @@ using System;
 using Infrastructure.Context.Security;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations.Seguridad
 {
     [DbContext(typeof(SecurityContext))]
-    partial class SecurityContextModelSnapshot : ModelSnapshot
+    [Migration("20220719201127_PersonaCreate")]
+    partial class PersonaCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

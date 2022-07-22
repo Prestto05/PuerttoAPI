@@ -8,16 +8,22 @@ namespace Core.Puertto.DTOs.Security
 {
     public class UserToken
     {
-        public int IdUser { get; set; }
-
-        public string? Name { get; set; }
-
-        public string? UserName { get; set; }
+        public string Token { get; set; }
 
         public string? Email { get; set; }
 
-        public string? Password { get; set; }
+        public TimeSpan Validaty { get; set; }
 
-        public DateTime? CreatedDate { get; set; }
+        public int id_usuario { get; set; }
+
+
+        public string EmailId { get; set; }
+
+        public string Rol { get; set; }
+
+        public Guid GuidId { get; set; }
+
+        public DateTime ExpiredTime { get; set; }
+
     }
 }
